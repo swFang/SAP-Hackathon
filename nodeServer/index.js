@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const {tagModel, postingModel} = require('./models/tagModel');
 
 mongoose.connect(
     'mongodb://admin:Admin123Admin123@ds137488.mlab.com:37488/rona_helper',
@@ -13,7 +14,19 @@ mongoose.connect(
 
 const app = express();
 
-app.get('/posting', async (req, res) => {
+app.get('/', async (req,res) => {
+    //res.send({hi:'there'});
+    const tag = new testModel({
+        priority: 1,
+        name: 'tagname',
+        associatedPosts: [],
+        associatedSubTags:[]
+    });
+    await tag.save();
+    res.send(tag);
+});
+
+app.get('/posting', (req, res) => {
     const posting = req.query.posting;
     const postingData = await getPostingData(posting);
     res.send(postingData);
