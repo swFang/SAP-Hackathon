@@ -11,14 +11,54 @@ mongoose.connect(
     console.log(err);
 });
 
-const app = express(); 
+const app = express();
 
-app.get('/', (req,res) => {
-    res.send({hi:'there'});
+app.get('/posting', (req, res) => {
+    const posting = req.query.posting;
+    const postingData = await getPostingData(posting);
+    res.send(postingData);
 });
+
+app.get('/tag', (req, res) => {
+    const tag = req.query.tag;
+    const tagData = await getTagData(tag);
+    res.send(tagData);
+});
+
+app.post('/addPosting', (req, res) => {
+    const posting = req.query.posting;
+    const postingData = await addPostingData(posting);
+    res.send(postingData);
+});
+
+app.post('/removePosting', (req, res) => {
+    const posting = req.query.posting;
+    const postingData = await removePostingData(posting);
+    res.send(postingData);
+});
+
+
 
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
     console.log(`app started on port ${PORT}`);
 });
+
+
+
+function getPostingData(posting) {
+
+};
+
+function getTagData(tag) {
+
+};
+
+function addPostingData(posting) {
+
+};
+
+function removePostingData(posting) {
+
+};
