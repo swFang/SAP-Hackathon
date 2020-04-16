@@ -26,26 +26,26 @@ app.get('/', async (req,res) => {
     res.send(tag);
 });
 
-app.get('/posting', async (req, res) => {
+app.get('/getPosting', async (req, res) => {
     const posting = req.query.posting;
     const postingData = await getPostingData(posting);
     res.send(postingData);
 });
 
-app.get('/tag', async (req, res) => {
+app.get('/getTag', async (req, res) => {
     const tag = req.query.tag;
     const tagData = await getTagData(tag);
     res.send(tagData);
 });
 
 app.post('/addPosting', async (req, res) => {
-    const posting = req.query.posting;
+    const posting = req.body.posting;
     const postingData = await addPostingData(posting);
     res.send(postingData);
 });
 
 app.post('/removePosting', async (req, res) => {
-    const posting = req.query.posting;
+    const posting = req.body.posting;
     const postingData = await removePostingData(posting);
     res.send(postingData);
 });
@@ -62,7 +62,7 @@ app.listen(PORT, () => {
 
 function getPostingData(posting) {
     const postingName = posting.name;
-    Posting
+    postingModel
         .find({
             name: postingName
         })
@@ -76,7 +76,7 @@ function getPostingData(posting) {
 
 function getTagData(tag) {
     const tagName = tag.name;
-    Tag
+    tagModel
         .find({
             name: tagName
         })
@@ -100,7 +100,7 @@ function addPostingData(posting) {
 
 function removePostingData(posting) {
     const postingName = posting.name;
-    Posting
+    postingModel
         .findOneAndRemove({
             name: postingName
         })
