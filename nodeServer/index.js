@@ -17,32 +17,34 @@ const app = express();
 app.get('/', async (req,res) => {
     //res.send({hi:'there'});
     const tag = new testModel({
-        priority: 1, 
+        priority: 1,
         name: 'tagname',
         associatedPosts: [],
         associatedSubTags:[]
     });
     await tag.save();
     res.send(tag);
+});
+
 app.get('/posting', (req, res) => {
     const posting = req.query.posting;
     const postingData = await getPostingData(posting);
     res.send(postingData);
 });
 
-app.get('/tag', (req, res) => {
+app.get('/tag', async (req, res) => {
     const tag = req.query.tag;
     const tagData = await getTagData(tag);
     res.send(tagData);
 });
 
-app.post('/addPosting', (req, res) => {
+app.post('/addPosting', async (req, res) => {
     const posting = req.query.posting;
     const postingData = await addPostingData(posting);
     res.send(postingData);
 });
 
-app.post('/removePosting', (req, res) => {
+app.post('/removePosting', async (req, res) => {
     const posting = req.query.posting;
     const postingData = await removePostingData(posting);
     res.send(postingData);
@@ -59,17 +61,53 @@ app.listen(PORT, () => {
 
 
 function getPostingData(posting) {
-
+    const postingName = posting.name;
+    Posting
+        .find({
+            name: postingName
+        })
+        .then(posting => {
+            console.log(posting)
+        })
+        .catch(err => {
+            console.error(err)
+        })
 };
 
 function getTagData(tag) {
-
+    const tagName = tag.name;
+    Tag
+        .find({
+            name: tagName
+        })
+        .then(tag => {
+            console.log(tag)
+        })
+        .catch(err => {
+            console.error(err)
+        })
 };
 
 function addPostingData(posting) {
-
+    posting.save()
+        .then(posting => {
+            console.log(posting)
+        })
+        .catch(err => {
+            console.error(err)
+        })
 };
 
 function removePostingData(posting) {
-
+    const postingName = posting.name;
+    Posting
+        .findOneAndRemove({
+            name: postingName
+        })
+        .then(response => {
+            console.log(response)
+        })
+        .catch(err => {
+            console.error(err)
+        })
 };
