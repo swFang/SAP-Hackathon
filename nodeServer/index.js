@@ -16,7 +16,7 @@ const app = express();
 
 app.get('/', async (req,res) => {
     //res.send({hi:'there'});
-    const tag = new testModel({
+    const tag = new tagModel({
         priority: 1,
         name: 'tagname',
         associatedPosts: [],
@@ -26,7 +26,7 @@ app.get('/', async (req,res) => {
     res.send(tag);
 });
 
-app.get('/posting', (req, res) => {
+app.get('/posting', async (req, res) => {
     const posting = req.query.posting;
     const postingData = await getPostingData(posting);
     res.send(postingData);
