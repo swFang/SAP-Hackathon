@@ -8,23 +8,6 @@ import './css/Marker.css';
 
 
 function Googlemap(props) {
-  const [data, setData] = useState(props.data);
-
-  function createMarker() {
-    let arr = [];
-    for (let i = 0; i < props.data.length; i++) {
-      arr.push(<Marker
-          name={(props.data[i]).title}
-          key={i}
-          lat={(props.data[i]).lat}
-          lng={(props.data[i]).lon}
-          color="red"
-      />);
-    }
-    return arr;
-  }
-
-    
 
   const [center, setCenter] = useState({lat: 49.24, lng: -123});
   const [zoom, setZoom] = useState(11.7);
@@ -35,7 +18,7 @@ function Googlemap(props) {
         defaultCenter={center}
         defaultZoom={zoom}
       >
-      {data.map(task => (
+      {props.data.map(task => (
         <Marker
           lat={task.lat}
           lng={task.lon}
