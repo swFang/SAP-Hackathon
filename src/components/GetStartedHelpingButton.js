@@ -8,7 +8,6 @@ class GetStartedHelpingButton extends React.Component {
         super(props);
 
         this.buttonOnClick = this.buttonOnClick.bind(this);
-        this.makeApiCall = this.makeApiCall.bind(this);
         this.state = {
             buttonStyle: "default",
         };
@@ -18,15 +17,6 @@ class GetStartedHelpingButton extends React.Component {
         if (this.state.buttonStyle === "default") {
             this.setState({buttonStyle: "clicked"});
         }
-    }
-
-    makeApiCall() {
-        this.buttonOnClick();
-        console.log(this.props.selectedTags);
-        // fetch("https://localhost:5000/addPostingData")
-        //     .then(res)
-        // this.props.submitPosting();
-        // this.props.selectedTags
     }
 
     render() {
