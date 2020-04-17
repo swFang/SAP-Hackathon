@@ -203,18 +203,6 @@ function Dashboard() {
       })
   }, []);
 
-  // useEffect(async () => {
-  //   axios.get('http://localhost:8080/postsOfTags?tag=make_PPE')
-  //     .then((response) => {
-  //       console.log(response.data);
-  //       console.log(response.status);
-  //       console.log(response.statusText);
-  //       console.log(response.headers);
-  //       console.log(response.config);
-  //     }).catch((err) =>
-  //       console.log(err));
-  // }, []);
-
   const [awaitingTasks, setAwaitingTasks] = useState([]);
   const [progressTasks, setProgressTasks] = useState([]);
 
