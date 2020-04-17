@@ -8,5 +8,5 @@ const postingModel = new Schema({
     poster: String, 
 });
 
-module.exports = { postingModel }; 
+module.exports = { postingModel };
 module.exports = mongoose.model('postingModel', postingModel);

@@ -1,5 +1,6 @@
 import React from 'react';
 import QuestionnaireRecommendation from './QuestionnaireRecommendation';
+import './QuestionnaireEndGroup.css';
 
 class QuestionnaireEndGroup extends React.Component {
     constructor(props) {
@@ -25,10 +26,10 @@ class QuestionnaireEndGroup extends React.Component {
     render() {
         return (
             <div>
-                <h4>{this.props.endGroup.title}</h4>
-                <h5>{this.props.endGroup.subtitle}</h5>
+                <h4 className="endText">{this.props.endGroup.title}</h4>
+                <h5 className="endText">{this.props.endGroup.subtitle}</h5>
                 {this.generateRecommendations()}
-                <h5>{this.props.endGroup.endText}</h5>
+                <h5 className="endText">{this.props.endGroup.endText}</h5>
             </div>
         );
     }

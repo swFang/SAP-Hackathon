@@ -1,6 +1,7 @@
 import React from 'react';
 import QuestionnaireButtonGroup from './QuestionnaireButtonGroup';
 import QuestionnaireEndGroup from './QuestionnaireEndGroup';
+import QuestionnaireTextbox from './QuestionnaireTextbox';
 import './Questionnaire.css';
 
 const Q1 = {
@@ -16,11 +17,11 @@ const Q2 = {
     title: "How can we help you?",
     multiSelect: false,
     buttonObjects: [
-        {id: 2_1, title: "Acquiring PPE", nextQuestionId: 3},
-        {id: 2_2, title: "Need Materials to Make PPE", nextQuestionId: 3},
-        {id: 2_3, title: "Acquiring Household Goods", nextQuestionId: 3},
-        {id: 2_4, title: "Purchasing Groceries", nextQuestionId: 3},
-        {id: 2_5, title: "Volunteers", nextQuestionId: 3}
+        {id: 2_1, title: "Acquiring PPE", nextQuestionId: 6},
+        {id: 2_2, title: "Need Materials to Make PPE", nextQuestionId: 6},
+        {id: 2_3, title: "Acquiring Household Goods", nextQuestionId: 6},
+        {id: 2_4, title: "Purchasing Groceries", nextQuestionId: 6},
+        {id: 2_5, title: "Volunteers", nextQuestionId: 6}
     ]
 };
 
@@ -49,10 +50,14 @@ const Q5 = {
     title: "Do you have a way to transport material?",
     multiSelect: true,
     buttonObjects: [
-        {id: 5_10, title: "I can transport", nextQuestionId: 6},
-        {id: 5_11, title: "I need help to transport some materials", nextQuestionId: 6},
-        {id: 5_11, title: "I need someone to pickup my materials", nextQuestionId: 6}
+        {id: 5_10, title: "I can transport", nextQuestionId: "end"},
+        {id: 5_11, title: "I need help to transport some materials", nextQuestionId: "end"},
+        {id: 5_11, title: "I need someone to pickup my materials", nextQuestionId: "end"}
     ]
+};
+
+const Q6 = {
+    title: "How can we help you?"
 };
 
 const END = {
@@ -63,8 +68,7 @@ const END = {
         {
             title: "Help produce protective equipment",
             links: [
-                {body: "> How to produce masks with 3D printers", hyperlink: "https://engineering.rowan.edu/research-centers/mask/index.html"},
-                {body: "> How to sew masks", hyperlink: "https://sarahmaker.com/how-to-sew-a-surgical-face-mask-for-hospitals-free-pattern/"}
+                {body: "> How to 3D print or sew face masks", hyperlink: "https://engineering.rowan.edu/research-centers/mask/index.html"},
             ],
             imageLink: "./mask.svg"
         },
@@ -98,6 +102,7 @@ const QUESTIONNAIRE_MAP = {
     3: Q3,
     4: Q4,
     5: Q5,
+    6: Q6,
     "end": END
 };
 
@@ -121,10 +126,11 @@ class Questionnaire extends React.Component {
     }
 
     render() {
-        const questionnaireObject = QUESTIONNAIRE_MAP[this.state.questionToDisplayId];
+        const displayId = this.state.questionToDisplayId;
+        const questionnaireObject = QUESTIONNAIRE_MAP[displayId];
         let questionnaireGroup;
 
-        if (this.state.questionToDisplayId !== "end") {
+        if (displayId !== "end" && displayId !== 6 && displayId !== 7) {
             questionnaireGroup = <QuestionnaireButtonGroup
                 buttonObjects={questionnaireObject.buttonObjects}
                 isMultiSelect={questionnaireObject.multiSelect}
@@ -132,10 +138,17 @@ class Questionnaire extends React.Component {
                 updateQuestionnaireResponses={this.updateQuestionnaireResponses}
             />;
         }
-        else {
+        else if (displayId == "end"){
             questionnaireGroup = <QuestionnaireEndGroup
                 endGroup={END}
             />;
+        }
+        else if (displayId == 6) {
+            questionnaireGroup = <QuestionnaireTextbox
+            />
+        }
+        else if (displayId == 7) {
+
         }
 
         return (
