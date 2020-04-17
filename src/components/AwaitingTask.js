@@ -18,9 +18,13 @@ function AwaitingTask(props) {
         </Button>
   
         <MyVerticallyCenteredModal
+          priority={props.priority}
+          title={props.title}
+          desc={props.description}
           show={modalShow}
           deletetask={() => update()}
           onHide={() => setModalShow(false)}
+          contact={props.contact}
         />
         </>
       )
@@ -42,15 +46,20 @@ function AwaitingTask(props) {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Modal heading
+            {props.title}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h4>Centered Modal</h4>
           <p>
-            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-            consectetur ac, vestibulum at eros.}
+           {props.desc}
+          </p>
+          <p>
+            Priority:
+           {props.priority}
+          </p>
+          <p>
+            Contact:
+           {props.contact}
           </p>
         </Modal.Body>
         <Modal.Footer>
