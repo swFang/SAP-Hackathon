@@ -198,10 +198,10 @@ function Dashboard() {
       .then(res => {
         console.log("res.data.stuff");
 
-        console.log(res.data.stuff.associatedPosts[0]);
-        // setAwaitingTasks(res.data.stuff.associatedPosts[0]);
+        console.log(res.data.stuff.associatedPosts);
+        setAwaitingTasks(res.data.stuff.associatedPosts);
       })
-  });
+  }, []);
 
   // useEffect(async () => {
   //   axios.get('http://localhost:8080/postsOfTags?tag=make_PPE')
@@ -215,8 +215,8 @@ function Dashboard() {
   //       console.log(err));
   // }, []);
 
-  const [awaitingTasks, setAwaitingTasks] = useState(awaitingTasks_updated);
-  const [progressTasks, setProgressTasks] = useState(progressTasks_updated);
+  const [awaitingTasks, setAwaitingTasks] = useState([]);
+  const [progressTasks, setProgressTasks] = useState([]);
 
   function updateTask(title_) {
     // console.log("title: " + title_)
