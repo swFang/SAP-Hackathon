@@ -8,7 +8,7 @@ class QuestionnaireRecommendation extends React.Component {
 
     generateLinksArray() {
         let linksArray = [];
-        for (let i = 0; i < this.props.links; i++) {
+        for (let i = 0; i < this.props.links.length; i++) {
             const link = this.props.links[i];
             linksArray.push(
                 <div>

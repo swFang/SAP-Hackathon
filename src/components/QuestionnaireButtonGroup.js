@@ -49,6 +49,7 @@ class QuestionnaireButtonGroup extends React.Component {
     nextClicked() {
         let selectedResponses = []
         let nextQuestionId;
+
         for (let i = 0; i < this.state.buttonRefs.length; i++) {
             let button = this.state.buttonRefs[i].current;
             if (!!button) {
@@ -60,8 +61,9 @@ class QuestionnaireButtonGroup extends React.Component {
                 this.state.nextButtonRef.current.resetButton();
             }
         }
-
-        this.props.updateQuestionnaireResponses(selectedResponses, nextQuestionId);
+        if (selectedResponses.length > 0) {
+            this.props.updateQuestionnaireResponses(selectedResponses, nextQuestionId);
+        }
     }
 
     render() {

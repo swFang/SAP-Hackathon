@@ -1,0 +1,15 @@
+.headers {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.tag {
+    background: #7C7CFF;
+    margin-left: var(--button-sides);
+    margin-right: var(--button-sides);
+    border-radius: 10px;
+    font-weight: bold;
+    color: white;
+    padding-top: var(--button-verticals);
+    padding-bottom: var(--button-verticals);
+}
