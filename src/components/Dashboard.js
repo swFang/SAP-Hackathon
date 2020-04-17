@@ -64,7 +64,7 @@ function Dashboard() {
   function deleteTask(title_) {
     console.log("title_ :" + title_)
     const new_progressTasks = progressTasks.filter(task => task.title !== title_);
-    setAwaitingTasks(new_progressTasks);
+    setProgressTasks(new_progressTasks);
 
     console.log("new_progressTasks: " + new_progressTasks);
   }

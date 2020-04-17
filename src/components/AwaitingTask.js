@@ -19,7 +19,8 @@ function AwaitingTask(props) {
   
         <MyVerticallyCenteredModal
           show={modalShow}
-          onHide={() => update()}
+          deletetask={() => update()}
+          onHide={() => setModalShow(false)}
         />
         </>
       )
@@ -53,8 +54,9 @@ function AwaitingTask(props) {
           </p>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={props.onHide}>Close</Button>
-        </Modal.Footer>
+          <button class="btn float-left btn-primary" onClick={props.onHide}>Close</button>
+          <button class="btn float-right btn-primary" onClick={props.deletetask}>Accept Request</button>
+          </Modal.Footer>
       </Modal>
     );
   }
