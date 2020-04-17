@@ -14,18 +14,29 @@ mongoose.connect(
 });
 
 const app = express();
-app.use(bodyParser.json())
+app.use(bodyParser.json());
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        // Website you wish to allow to connect
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8888');
+
+    // Request methods you wish to allow
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+    // Request headers you wish to allow
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
+    // Set to true if you need the website to include cookies in the requests sent
+    // to the API (e.g. in case you use sessions)
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    next();
+  });
+
 
 
 app.get('/', async (req,res) => {
-    //res.send({hi:'there'});
-    const tag = new testModel({
-        priority: 1,
-        name: 'tagname',
-        associatedPosts: []
-    });
-    await tag.save();
-    res.send(tag);
+    res.send({"hi":"there"});
 });
 
 app.get('/posting', async(req, res) => {
@@ -48,8 +59,12 @@ app.get('/postsOfTags', async (req, res) => {
 });
 
 app.post('/addPosting', async (req, res) => {
+    console.log('got requiest for addPOsting!');
+    console.log(req.body.tag);
     const posting = req.body.posting;
     const tag = req.body.tag
+    console.log(posting);
+    console.log(tag);
     const postingData = await addPostingData(posting, tag);
     res.send(postingData);
 });
@@ -112,8 +127,8 @@ function getTagData(tag) {
         })
 };
 
-function addPostingData(posting) {
-    const newPosting = new postingModel(posting, tag);
+function addPostingData(posting, tag) {
+    const newPosting = new postingModel(posting);
     newPosting.save()
         .then(posting => {
             updateTagWithPosting(tag, posting);

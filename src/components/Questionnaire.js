@@ -8,6 +8,7 @@ import QuestionnairePostingDone from './QuestionnairePostingDone';
 import './Questionnaire.css';
 
 const howWeCanHelpTags = ["Acquiring PPE", "Need Materials to Make PPE", "Acquiring Household Goods", "Picking up Groceries or Medication", "Volunteers"];
+const apiTags = ["make_PPE", "PPE_mats", "Household_goods", "Pickup_stuffs", "Pickup_stuffs"];
 
 const Q1 = {
     title: "What are you here to do?",
@@ -123,7 +124,7 @@ class Questionnaire extends React.Component {
         this.state = {
             questionnaireResponses: [],
             questionToDisplayId: 1,
-            postingTextInformation: []
+            postingTextInformation: [],
         }
     }
 
@@ -206,6 +207,7 @@ class Questionnaire extends React.Component {
                 date={this.state.postingTextInformation[3]}
                 contactInfo={this.state.postingTextInformation[4]}
                 submitPosting={this.submitPosting}
+                tag={apiTags[tagIndex]}
             />
         }
         else if (displayId == "end_posting") {
