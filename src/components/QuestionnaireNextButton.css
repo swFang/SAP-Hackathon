@@ -1,0 +1,23 @@
+:root {
+    --main-button-color: #7C7CFF;
+}
+
+.nBtn {
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 9px 54px;
+    font-size: 18px;
+    margin: 10px;
+    margin-left: 50px;
+    margin-left: 535px;
+    margin-top: 150px;
+}
+
+.btn-default {
+    background: var(--main-button-color);
+}
+
+.btn-clicked {
+    background: rgb(97, 97, 199);
+}
