@@ -41,8 +41,9 @@ app.get('/tag', async (req, res) => {
 });
 
 app.post('/addPosting', async (req, res) => {
-    const posting = req.body;
-    const postingData = await addPostingData(posting);
+    const posting = req.body.posting;
+    const tag = req.body.tag
+    const postingData = await addPostingData(posting, tag);
     res.send(postingData);
 });
 
@@ -105,10 +106,10 @@ function getTagData(tag) {
 };
 
 function addPostingData(posting) {
-    const newPosting = new postingModel(posting);
+    const newPosting = new postingModel(posting, tag);
     newPosting.save()
         .then(posting => {
-            console.log(posting)
+            updateTagWithPosting(tag, posting);
         })
         .catch(err => {
             console.error(err)
@@ -155,3 +156,31 @@ function removeTagData(tag) {
             console.error(err)
         })
 };
+
+async function updateTagWithPosting(tag, posting) {
+    const tagName = tag.name;
+    tagModel
+        .findOne({
+            name: tagName
+        })
+        .then(tag => {
+            tag.associatedPosts.push(posting);
+            tag.save();
+           // tag.associatedPosts.push(posting);
+        })
+        .catch(err => {
+            console.error(err)
+        })
+}
+
+// function tasksOfTag(tag) {
+//     tagModel.findOne({
+//         name: tag
+//     })
+//     .then(response => {
+//         console.log(response);
+//     })
+//     .catch(err => {
+//         console.log(err);
+//     })
+// }

@@ -11,7 +11,8 @@ const posting = new Schema({
         lat: Number,
         long: Number,
     },
-    date: Date
+    date: Date,
+    completion: Boolean
 });
 
 const tag = new Schema({
