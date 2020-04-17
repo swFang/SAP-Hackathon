@@ -3,7 +3,7 @@ import GoogleMapReact from 'google-map-react';
 import Marker from './Marker';
 import './css/Marker.css';
 // API KEY: AIzaSyBiNLSs56-UkgDJDNu19wq_keRWBUIzkk4
-// lat long: 49.24, 
+// lat long: 49.24,
 // zoom: 11.7
 
 
