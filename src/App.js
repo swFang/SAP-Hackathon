@@ -3,6 +3,7 @@ import './App.css';
 import Dashboard from './components/Dashboard';
 import Questionnaire from './components/Questionnaire';
 import GoogleApiWrapper from './components/Googlemap';
+import QuestionnaireRecommendation from './components/QuestionnaireRecommendation';
 
 import {
   BrowserRouter as Router,
@@ -24,6 +25,9 @@ function App() {
             </Route>
             <Route path="/questionnaire">
               <Questionnaire />
+            </Route>
+            <Route path="/end">
+              <QuestionnaireRecommendation/>
             </Route>
           </Switch>
         </div>
