@@ -44,7 +44,7 @@ app.get('/postsOfTags', async (req, res) => {
     let tag = req.query.tag;
     const tags = await tasksOfTag(tag);
     console.log('api', tags);
-    res.send({"stuff": tags});
+    res.status(200).send({"stuff": tags});
 });
 
 app.post('/addPosting', async (req, res) => {

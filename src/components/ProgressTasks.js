@@ -15,13 +15,14 @@ function CompletedCards(props) {
       {props.data.map(task => (
         <ProgressTask
           key={task.id}
-          title={task.title}
+          title={task.name}
           date={task.date}
           lat={task.lat}
           lon={task.lon}
           name={task.name}
           id={task.id}
           complete={true}
+          description={task.description}
           deleteTask={props.deleteTask}
         />
       ))}

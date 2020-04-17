@@ -14,7 +14,7 @@ function AwaitingTask(props) {
       return (
         <>
         <Button variant="primary" onClick={() => setModalShow(true)}>
-          Launch vertically centered modal
+          Take request
         </Button>
   
         <MyVerticallyCenteredModal
@@ -67,7 +67,7 @@ function AwaitingTask(props) {
         <h5 class="card-title">{props.title}</h5>
         <h5>Address</h5>
         <h6 class="card-subtitle mb-2 text-muted">{props.date}</h6>
-        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+  <p class="card-text">{props.description}</p>
         {showUncompleteButton()}
       </div>
     </div>

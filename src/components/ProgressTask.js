@@ -41,9 +41,9 @@ function ProgressTask(props) {
         <h5 class="card-title">{props.title}</h5>
         <h5>Address</h5>
         <h6 class="card-subtitle mb-2 text-muted">{props.date}</h6>
-        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+  <p class="card-text">{props.description}</p>
         <Button variant="primary" onClick={() => props.deleteTask(props.title)}>
-          Launch vertically centered modal
+          Completed
         </Button>
       </div>
     </div>
