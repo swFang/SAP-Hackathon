@@ -1,7 +1,8 @@
 import React from 'react';
 
 function Marker(props) {
-    const { color, name, id } = props;
+    const { color, name} = props;
+    console.log("?")
     return (
       <div>
         <div

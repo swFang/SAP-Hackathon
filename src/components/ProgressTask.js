@@ -1,41 +1,11 @@
 import React, { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 
-function Card(props) {
+function ProgressTask(props) {
   const [isComplete, setData] = useState(props.complete);
   const [modalShow, setModalShow] = React.useState(false);
 
   //             <button type="button" class="btn btn-primary" onClick={() => props.onDelete(props.title)}>Complete</button>
-  function showUncompleteButton() {
-    if (!isComplete) {
-      console.log("INCOMPLETE")
-      //      return <button type="button" class="btn btn-primary" onClick={() => props.onUpdate(props.title)}>Accept Request</button>
-
-      return (
-        <>
-        <Button variant="primary" onClick={() => setModalShow(true)}>
-          Launch vertically centered modal
-        </Button>
-  
-        <MyVerticallyCenteredModal
-          show={modalShow}
-          onHide={() => update()}
-        />
-        </>
-      )
-    } else {
-      return (
-        <Button variant="primary" onClick={() => update()}>
-          Launch vertically centered modal
-        </Button>
-      )
-    }
-  }
-
-  function update() {
-    setModalShow(false);
-    props.onUpdate(props.title);
-  }
 
   function MyVerticallyCenteredModal(props) {
     return (
@@ -72,10 +42,12 @@ function Card(props) {
         <h5>Address</h5>
         <h6 class="card-subtitle mb-2 text-muted">{props.date}</h6>
         <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-        {showUncompleteButton()}
+        <Button variant="primary" onClick={() => props.deleteTask(props.title)}>
+          Launch vertically centered modal
+        </Button>
       </div>
     </div>
   )
 }
 
-export default Card;
+export default ProgressTask;

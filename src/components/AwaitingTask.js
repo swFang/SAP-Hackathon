@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 
-function Card(props) {
+function AwaitingTask(props) {
   const [isComplete, setData] = useState(props.complete);
   const [modalShow, setModalShow] = React.useState(false);
 
@@ -22,12 +22,6 @@ function Card(props) {
           onHide={() => update()}
         />
         </>
-      )
-    } else {
-      return (
-        <Button variant="primary" onClick={() => update()}>
-          Launch vertically centered modal
-        </Button>
       )
     }
   }
@@ -78,4 +72,4 @@ function Card(props) {
   )
 }
 
-export default Card;
+export default AwaitingTask;
