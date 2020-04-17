@@ -8,7 +8,7 @@ function AwaitingTasks(props) {
     <div>
       {props.data.map(task => (
         <AwaitingTask
-          key={task.id}
+          key={task._id}
           title={task.name}
           date={task.date}
           lat={task.lat}

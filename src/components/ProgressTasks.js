@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ProgressTask from './ProgressTask';
 
 
-function CompletedCards(props) {
+function ProgressTasks(props) {
 
   // function deleteCard(title_) {
   //   console.log(title_);
@@ -14,7 +14,7 @@ function CompletedCards(props) {
     <div>
       {props.data.map(task => (
         <ProgressTask
-          key={task.id}
+          key={task._id}
           title={task.name}
           date={task.date}
           lat={task.lat}
@@ -30,4 +30,4 @@ function CompletedCards(props) {
   );
 }
 
-export default CompletedCards;
+export default ProgressTasks;

@@ -41,8 +41,8 @@ function Dashboard() {
                 null,
                 {
                     "location": {
-                        "lat": 1,
-                        "long": 2
+                        "lat": 49.241,
+                        "long": -123
                     },
                     "_id": "5e99539ca51bc701ecac8fa0",
                     "priority": 10,
@@ -56,8 +56,8 @@ function Dashboard() {
                 },
                 {
                     "location": {
-                        "lat": 1,
-                        "long": 1
+                      "lat": 49.242,
+                      "long": -123.02
                     },
                     "_id": "5e99e7499f498c076c388daf",
                     "priority": 10,
@@ -71,8 +71,8 @@ function Dashboard() {
                 },
                 {
                     "location": {
-                        "lat": 1,
-                        "long": 1
+                      "lat": 49.243,
+                      "long": -123.04
                     },
                     "_id": "5e99e7639f498c076c388db1",
                     "priority": 10,
@@ -86,8 +86,8 @@ function Dashboard() {
                 },
                 {
                     "location": {
-                        "lat": 1,
-                        "long": 1
+                      "lat": 49.244,
+                      "long": -123.06
                     },
                     "_id": "5e99e87aa753a907fc60320f",
                     "priority": 10,
@@ -105,42 +105,83 @@ function Dashboard() {
     }
   
 
-  const progressTasks_ = [
-    {
-      "stuff": {
-          "_id": "1231231231231231",
-          "priority": 10,
-          "name": "progressTasks_",
-          "associatedPosts": [
-              null,
-              {
-                  "location": {
-                      "lat": 1,
-                      "long": 2
-                  },
-                  "_id": "87979879879879",
-                  "priority": 10,
-                  "name": "progressTasks_name",
-                  "description": "progressTasks_description",
-                  "poster": "progressTasks_poster",
-                  "contact": "progressTasks_new",
-                  "date": "2020-05-17T06:39:25.000Z",
-                  "completion": true,
-                  "__v": 0
-              }
-          ],
-          "__v": 2
-      }
-  }
-  ]
+  const progressTasks_ = {
+    "stuff": {
+        "_id": "5e9941c34bc5b70063f592e1",
+        "priority": 10,
+        "name": "make_PPE",
+        "associatedPosts": [
+            null,
+            {
+                "location": {
+                    "lat": 1,
+                    "long": 2
+                },
+                "_id": "5e99539ca51bc701ecac8fa1",
+                "priority": 10,
+                "name": "newPosting",
+                "description": "description",
+                "poster": "poster",
+                "contact": "new",
+                "date": "2020-04-17T06:39:25.000Z",
+                "completion": true,
+                "__v": 0
+            },
+            {
+                "location": {
+                    "lat": 1,
+                    "long": 1
+                },
+                "_id": "5e99e7499f498c076c388dad",
+                "priority": 10,
+                "name": "ASD",
+                "description": "asd",
+                "poster": "dummy name",
+                "contact": "asdf",
+                "date": "2020-04-17T17:09:08.000Z",
+                "completion": false,
+                "__v": 0
+            },
+            {
+                "location": {
+                    "lat": 1,
+                    "long": 1
+                },
+                "_id": "5e99e7639f498c076c388db2",
+                "priority": 10,
+                "name": "ASD",
+                "description": "asd",
+                "poster": "dummy name",
+                "contact": "asdf",
+                "date": "2020-04-17T17:09:08.000Z",
+                "completion": false,
+                "__v": 0
+            },
+            {
+                "location": {
+                    "lat": 1,
+                    "long": 1
+                },
+                "_id": "5e99e87aa753a907fc60320v",
+                "priority": 10,
+                "name": "Need Faceshields",
+                "description": "Need faceshields to help protect doctors\n",
+                "poster": "dummy name",
+                "contact": "604-xxx-xxxx",
+                "date": "2020-04-17T17:09:08.000Z",
+                "completion": false,
+                "__v": 0
+            }
+        ],
+        "__v": 5
+    }
+}
 
 
   function upDateJson(arr) {
     let result = [];
-    for (let i = 1; i < 1; i++) {
+    for (let i = 1; i < arr.stuff.associatedPosts.length; i++) {
       const obj = arr.stuff.associatedPosts[i]
-      console.log("obj")
-      console.log(obj)
       result.push(obj)
     }
     // console.log("result[0]");
@@ -153,9 +194,12 @@ function Dashboard() {
 
 
   useEffect(() => {
-    axios.get("localhost:8080/postsOfTags?tag=make_PPE")
+    axios.get("http://localhost:8080/postsOfTags?tag=make_PPE")
       .then(res => {
-        console.log(res.stuff)
+        console.log("res.data.stuff");
+
+        console.log(res.data.stuff.associatedPosts[0]);
+        // setAwaitingTasks(res.data.stuff.associatedPosts[0]);
       })
   });
 
@@ -175,8 +219,8 @@ function Dashboard() {
   const [progressTasks, setProgressTasks] = useState(progressTasks_updated);
 
   function updateTask(title_) {
-    console.log("title: " + title_)
-    console.log("Dashboard update");
+    // console.log("title: " + title_)
+    // console.log("Dashboard update");
     const t = awaitingTasks.find(task => task.name === title_);
 
     const new_awaitingTasks = awaitingTasks.filter(task => task.name !== title_);
@@ -184,17 +228,15 @@ function Dashboard() {
     setAwaitingTasks(new_awaitingTasks);
     setProgressTasks(progressTasks.concat(t));
 
-    console.log("new_awaitingTasks: " + new_awaitingTasks);
-    console.log("progressTasks: " + progressTasks);
-    console.log("data: " + data);
+    // console.log("new_awaitingTasks: " + new_awaitingTasks);
+    // console.log("progressTasks: " + progressTasks);
+    // console.log("data: " + data);
   }
 
   function deleteTask(title_) {
     console.log("title_ :" + title_)
     const new_progressTasks = progressTasks.filter(task => task.name !== title_);
     setProgressTasks(new_progressTasks);
-
-    console.log("new_progressTasks: " + new_progressTasks);
   }
 
   console.log("awaitingTasks_updated");

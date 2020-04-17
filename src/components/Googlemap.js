@@ -20,6 +20,7 @@ function Googlemap(props) {
       >
       {props.data.map(task => (
         <Marker
+          key={task._id}
           lat={task.location.lat}
           lng={task.location.long}
           name={task.title}
