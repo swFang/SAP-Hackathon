@@ -1,19 +1,21 @@
 import React from 'react';
-import Card from './card';
+import Cards from './Cards';
+import Googlemap from './Googlemap';
 
-function Main() {
+
+function Dashboard() {
   return (
     <div class="container-fluid">
       <div class="row">
         <div class="col-8">
-          <p>Map</p>
+          <Googlemap />
         </div>
         <div class="col-4">
-          <Card />
+          <Cards />
         </div>
       </div>
     </div>
   );
 }
 
-export default Main;
+export default Dashboard;

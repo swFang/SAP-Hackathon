@@ -1,8 +1,7 @@
 import React from 'react';
 import './App.css';
-import Main from './components/main';
-import Login from './components/login';
-
+import Dashboard from './components/Dashboard';
+import GoogleApiWrapper from './components/Googlemap';
 
 import {
   BrowserRouter as Router,
@@ -13,15 +12,14 @@ import {
 function App() {
   return (
     <div>
-      <p>This is the main</p>
       <Router>
         <div>
           <Switch>
-            <Route exact path="/">
-              <Main />
-            </Route>
             <Route path="/login">
-              <Login />
+              <GoogleApiWrapper />
+            </Route>
+            <Route path="/dashboard">
+              <Dashboard />
             </Route>
           </Switch>
         </div>
