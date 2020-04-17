@@ -101,7 +101,7 @@ app.listen(PORT, () => {
 
 function getPostingData(posting) {
     const postingName = posting.name;
-    Posting
+    postingModel
         .find({
             name: postingName
         })
@@ -115,7 +115,7 @@ function getPostingData(posting) {
 
 function getTagData(tag) {
     const tagName = tag.name;
-    Tag
+    tagModel
         .find({
             name: tagName
         })
