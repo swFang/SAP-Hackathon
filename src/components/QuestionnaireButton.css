@@ -1,0 +1,20 @@
+:root {
+    --main-button-color: #7C7CFF;
+  }
+
+.qBtn {
+    color: black;
+    font-weight: bold;
+    border: 2px solid var(--main-button-color);
+    border-radius: 35px;
+    padding: 12px 90px;
+    font-size: 20px;
+}
+
+.btn-outline {
+    background: #fff;
+}
+
+.btn-active {
+    background: var(--main-button-color);
+}

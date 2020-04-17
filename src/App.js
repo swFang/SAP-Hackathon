@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Dashboard from './components/Dashboard';
+import Questionnaire from './components/Questionnaire';
 import GoogleApiWrapper from './components/Googlemap';
 
 import {
@@ -15,11 +16,11 @@ function App() {
       <Router>
         <div>
           <Switch>
-            <Route path="/login">
-              <GoogleApiWrapper />
-            </Route>
             <Route path="/dashboard">
               <Dashboard />
+            </Route>
+            <Route path="/questionnaire">
+              <Questionnaire />
             </Route>
           </Switch>
         </div>
