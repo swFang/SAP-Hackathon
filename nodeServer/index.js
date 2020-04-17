@@ -40,6 +40,13 @@ app.get('/tag', async (req, res) => {
     res.send(tagData);
 });
 
+app.get('/postsOfTags', async (req, res) => {
+    let tag = req.query.tag;
+    const tags = await tasksOfTag(tag);
+    console.log('api', tags);
+    res.send({"stuff": tags});
+});
+
 app.post('/addPosting', async (req, res) => {
     const posting = req.body.posting;
     const tag = req.body.tag
@@ -173,14 +180,8 @@ async function updateTagWithPosting(tag, posting) {
         })
 }
 
-// function tasksOfTag(tag) {
-//     tagModel.findOne({
-//         name: tag
-//     })
-//     .then(response => {
-//         console.log(response);
-//     })
-//     .catch(err => {
-//         console.log(err);
-//     })
-// }
+async function tasksOfTag(tag) {
+    const res = await tagModel.findOne({name: tag});
+    console.log(res);
+    return res;
+}
