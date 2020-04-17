@@ -6,6 +6,8 @@ import './GetStartedHelpingButton.css';
 class GetStartedHelpingButton extends React.Component {
     constructor(props) {
         super(props);
+
+        this.buttonOnClick = this.buttonOnClick.bind(this);
         this.makeApiCall = this.makeApiCall.bind(this);
         this.state = {
             buttonStyle: "default",
@@ -19,6 +21,8 @@ class GetStartedHelpingButton extends React.Component {
     }
 
     makeApiCall() {
+        this.buttonOnClick();
+        console.log(this.props.selectedTags);
         // fetch("https://localhost:5000/addPostingData")
         //     .then(res)
         // this.props.submitPosting();
