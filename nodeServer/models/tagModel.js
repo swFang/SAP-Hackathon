@@ -5,14 +5,19 @@ const posting = new Schema({
     priority: Number, 
     name: String,
     description: String,
-    poster: String, 
+    poster: String,
+    contact: String,
+    location: {
+        lat: Number,
+        long: Number,
+    },
+    date: Date
 });
 
 const tag = new Schema({
     priority: Number, 
     name: String,
-    associatedPosts: [posting],
-    associatedSubTags:[this]
+    associatedPosts: [posting]
 });
 
 postingModel = mongoose.model('posting', posting);

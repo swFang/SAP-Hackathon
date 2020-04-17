@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+var bodyParser = require('body-parser');
 const {tagModel, postingModel} = require('./models/tagModel');
 
 mongoose.connect(
@@ -13,39 +14,42 @@ mongoose.connect(
 });
 
 const app = express();
+app.use(bodyParser.json())
+
 
 app.get('/', async (req,res) => {
     //res.send({hi:'there'});
-    const tag = new tagModel({
+    const tag = new testModel({
         priority: 1,
         name: 'tagname',
-        associatedPosts: [],
-        associatedSubTags:[]
+        associatedPosts: []
     });
     await tag.save();
     res.send(tag);
 });
 
-app.get('/getPosting', async (req, res) => {
+app.get('/posting', async(req, res) => {
     const posting = req.query.posting;
     const postingData = await getPostingData(posting);
     res.send(postingData);
 });
 
-app.get('/getTag', async (req, res) => {
+app.get('/tag', async (req, res) => {
     const tag = req.query.tag;
     const tagData = await getTagData(tag);
     res.send(tagData);
 });
 
 app.post('/addPosting', async (req, res) => {
-    const posting = req.body.posting;
+    const posting = req.body;
+    console.log('addposting', posting);
     const postingData = await addPostingData(posting);
     res.send(postingData);
 });
 
 app.post('/removePosting', async (req, res) => {
-    const posting = req.body.posting;
+    const posting = req.body;
+    console.log('removePosting', posting);
     const postingData = await removePostingData(posting);
     res.send(postingData);
 });
@@ -62,7 +66,7 @@ app.listen(PORT, () => {
 
 function getPostingData(posting) {
     const postingName = posting.name;
-    postingModel
+    Posting
         .find({
             name: postingName
         })
@@ -76,7 +80,7 @@ function getPostingData(posting) {
 
 function getTagData(tag) {
     const tagName = tag.name;
-    tagModel
+    Tag
         .find({
             name: tagName
         })
@@ -89,7 +93,8 @@ function getTagData(tag) {
 };
 
 function addPostingData(posting) {
-    posting.save()
+    const newPosting = new postingModel(posting);
+    newPosting.save()
         .then(posting => {
             console.log(posting)
         })
@@ -100,6 +105,7 @@ function addPostingData(posting) {
 
 function removePostingData(posting) {
     const postingName = posting.name;
+    console.log(posting.name);
     postingModel
         .findOneAndRemove({
             name: postingName
