@@ -1,4 +1,5 @@
 import React from 'react';
+import './QuestionnaireTextbox.css';
 
 class QuestionnaireTextbox extends React.Component {
     constructor(props) {
@@ -21,9 +22,10 @@ class QuestionnaireTextbox extends React.Component {
     render() {
         return (
         <form onSubmit={this.handleSubmit}>
-            Put Title here or smthing :
-            <input type="text" value={this.state.value} onChange={this.handleChange} />
-            <input type="submit" value="Submit" />
+            <div class="title">
+                {this.props.title}
+            </div>
+            <textarea class="text" type="text" value={this.state.value} onChange={this.handleChange} />
         </form>
         );
     }

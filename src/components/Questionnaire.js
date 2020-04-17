@@ -144,8 +144,13 @@ class Questionnaire extends React.Component {
             />;
         }
         else if (displayId == 6) {
-            questionnaireGroup = <QuestionnaireTextbox
-            />
+            //todo add next button under the questionnair textbox things
+            questionnaireGroup = (            
+            <div>
+                <h3> How can we help you? </h3>
+                <QuestionnaireTextbox title="Title"/>
+                <QuestionnaireTextbox title="Title2"/>
+            </div>)
         }
         else if (displayId == 7) {
 
