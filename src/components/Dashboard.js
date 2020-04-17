@@ -199,7 +199,7 @@ function Dashboard() {
         console.log("res.data.stuff");
 
         console.log(res.data.stuff.associatedPosts);
-        setAwaitingTasks(res.data.stuff.associatedPosts);
+        setAwaitingTasks(res.data.stuff.associatedPosts.reverse());
       })
   }, []);
 

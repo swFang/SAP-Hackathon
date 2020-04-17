@@ -7,7 +7,7 @@ import QuestionnaireFinalize from './QuestionnaireFinalize';
 import QuestionnairePostingDone from './QuestionnairePostingDone';
 import './Questionnaire.css';
 
-const howWeCanHelpTags = ["Acquiring PPE", "Need Materials to Make PPE", "Acquiring Household Goods", "Picking up Groceries or Medication", "Volunteers"];
+const howWeCanHelpTags = ["Need PPEs", "Need Materials to Make PPE", "Acquiring Household Goods", "Picking up Groceries or Medication", "Volunteers"];
 const apiTags = ["make_PPE", "PPE_mats", "Household_goods", "Pickup_stuffs", "Pickup_stuffs"];
 
 const Q1 = {
