@@ -9,6 +9,8 @@ class QuestionnaireButton extends React.Component {
         this.buttonOnClick = this.buttonOnClick.bind(this);
         this.setDeselected = this.setDeselected.bind(this);
         this.getId = this.getId.bind(this);
+        this.getIsSelected = this.getIsSelected.bind(this);
+        this.getNextQuestionId = this.getNextQuestionId.bind(this);
         this.state = {
             buttonStyle: "outline",
             isSelected: false
@@ -47,6 +49,10 @@ class QuestionnaireButton extends React.Component {
 
     getIsSelected() {
         return this.state.isSelected;
+    }
+
+    getNextQuestionId() {
+        return this.props.buttonNextQuestionId;
     }
 
     render() {

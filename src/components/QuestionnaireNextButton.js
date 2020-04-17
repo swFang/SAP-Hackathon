@@ -19,6 +19,10 @@ class QuestionnaireNextButton extends React.Component {
         this.props.nextClicked();
     }
 
+    resetButton() {
+        this.setState({buttonStyle: "default"});
+    }
+
     render() {
         return (
             <Button className="nBtn" variant={this.state.buttonStyle} onClick={this.buttonOnClick} active={false}>

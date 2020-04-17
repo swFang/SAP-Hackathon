@@ -1,0 +1,14 @@
+:root {
+    --button-inner-paddings: 7%;
+}
+
+.container {
+    background: #EDEDFF;
+    margin-top: 5%;
+    width: 700px;
+    height: 600px;
+    padding-left: var(--button-inner-paddings);
+    padding-right: var(--button-inner-paddings);
+    padding-top: 2%;
+    border-radius: 20px;
+}

@@ -1,6 +1,7 @@
 import React from 'react';
 import QuestionnaireButton from './QuestionnaireButton';
 import QuestionnaireNextButton from './QuestionnaireNextButton';
+import './QuestionnaireButtonGroup.css';
 
 class QuestionnaireButtonGroup extends React.Component {
     constructor(props) {
@@ -10,8 +11,6 @@ class QuestionnaireButtonGroup extends React.Component {
         this.createButtons = this.createButtons.bind(this);
         this.nextClicked = this.nextClicked.bind(this);
         this.state = {
-            buttonObjects: props.buttonObjects,
-            isMultiSelect: props.isMultiSelect,
             buttonRefs: [],
             nextButtonRef: React.createRef()
         };
@@ -20,8 +19,10 @@ class QuestionnaireButtonGroup extends React.Component {
     multiSelectFn(idToSelect) {
         for (let i = 0; i < this.state.buttonRefs.length; i++) {
             const questionnaireButton = this.state.buttonRefs[i].current;
-            if (idToSelect !== questionnaireButton.getId()) {
-                questionnaireButton.setDeselected();
+            if (!!questionnaireButton) {
+                if (idToSelect !== questionnaireButton.getId()) {
+                    questionnaireButton.setDeselected();
+                }
             }
         }
     }
@@ -35,9 +36,10 @@ class QuestionnaireButtonGroup extends React.Component {
                 <QuestionnaireButton
                     ref={buttonRef}
                     buttonText={buttonObjects[i].title}
-                    isMultiSelect={this.state.isMultiSelect}
+                    isMultiSelect={this.props.isMultiSelect}
                     multiSelectFn={this.multiSelectFn}
                     buttonId={buttonObjects[i].id}
+                    buttonNextQuestionId={buttonObjects[i].nextQuestionId}
                 />
             );
         }
@@ -45,13 +47,28 @@ class QuestionnaireButtonGroup extends React.Component {
     }
 
     nextClicked() {
-        console.log("Clicked");
+        let selectedResponses = []
+        let nextQuestionId;
+        for (let i = 0; i < this.state.buttonRefs.length; i++) {
+            let button = this.state.buttonRefs[i].current;
+            if (!!button) {
+                if (button.getIsSelected()) {
+                    nextQuestionId = button.getNextQuestionId();
+                    selectedResponses.push(button.getId());
+                }
+                button.setDeselected();
+                this.state.nextButtonRef.current.resetButton();
+            }
+        }
+
+        this.props.updateQuestionnaireResponses(selectedResponses, nextQuestionId);
     }
 
     render() {
         return (
-            <div className="container">
-                {this.createButtons(this.state.buttonObjects)}
+            <div className="questionnaireGroup">
+                <h3 className="questionnaireGroupTitle">{this.props.questionnaireGroupTitle}</h3>
+                {this.createButtons(this.props.buttonObjects)}
                 <QuestionnaireNextButton ref={this.state.nextButtonRef} nextClicked={this.nextClicked}/>
             </div>
         );

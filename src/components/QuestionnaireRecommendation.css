@@ -1,0 +1,17 @@
+.recommendation {
+    width: 80%;
+    height: 200px;
+    margin: auto;
+    padding: 10px;
+}
+
+.recommendationImage {
+    width: 15%;
+    float: left;
+    width: 84px;
+}
+
+.recommendationText {
+    margin-left: 5%;
+    height: 200px;
+}
