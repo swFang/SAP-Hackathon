@@ -10,8 +10,10 @@ class QuestionnaireEndGroup extends React.Component {
 
     generateRecommendations() {
         let recommendations = [];
-        for (let i = 0; i < this.props.endGroup.potentialSolutions.length; i++) {
-            const solution = this.props.endGroup.potentialSolutions[i];
+        const responseValues = this.props.responseValues;
+
+        if (responseValues.includes("3_1") || responseValues.includes("3_2")) {
+            const solution = this.props.endGroup.potentialSolutions[0];
             recommendations.push(
                 <QuestionnaireRecommendation
                     title={solution.title}
@@ -20,6 +22,39 @@ class QuestionnaireEndGroup extends React.Component {
                 />
             );
         }
+
+        if (responseValues.includes("5_1") || responseValues.includes("5_2") || responseValues.includes("5_3")) {
+            const solution = this.props.endGroup.potentialSolutions[1];
+            recommendations.push(
+                <QuestionnaireRecommendation
+                    title={solution.title}
+                    links={solution.links}
+                    imageLink={solution.imageLink}
+                />
+            );
+        }
+
+        if (responseValues.includes("4_1") || responseValues.includes("4_2") || responseValues.includes("4_3") || responseValues.includes("4_4")) {
+            const solution = this.props.endGroup.potentialSolutions[2];
+            recommendations.push(
+                <QuestionnaireRecommendation
+                    title={solution.title}
+                    links={solution.links}
+                    imageLink={solution.imageLink}
+                />
+            );
+        }
+
+        // Add volunteer time regardless
+        const solution = this.props.endGroup.potentialSolutions[3];
+        recommendations.push(
+            <QuestionnaireRecommendation
+                title={solution.title}
+                links={solution.links}
+                imageLink={solution.imageLink}
+            />
+        );
+
         return recommendations;
     }
 

@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
-const { Schema } = mongoose; 
+const { Schema } = mongoose;
 
 const posting = new Schema({
-    priority: Number, 
+    priority: Number,
     name: String,
     description: String,
     poster: String,
@@ -16,7 +16,7 @@ const posting = new Schema({
 });
 
 const tag = new Schema({
-    priority: Number, 
+    priority: Number,
     name: String,
     associatedPosts: [posting]
 });

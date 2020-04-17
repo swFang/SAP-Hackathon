@@ -8,6 +8,7 @@ class QuestionnaireTextbox extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.getTextboxValue = this.getTextboxValue.bind(this);
     }
 
     handleChange(event) {
@@ -19,13 +20,17 @@ class QuestionnaireTextbox extends React.Component {
         event.preventDefault();
     }
 
+    getTextboxValue() {
+        return this.state.value;
+    }
+
     render() {
         return (
         <form onSubmit={this.handleSubmit}>
-            <div class="title">
+            <div className="title">
                 {this.props.title}
             </div>
-            <textarea class="text" type="text" value={this.state.value} onChange={this.handleChange} />
+            <textarea className={this.props.variant} type="text" value={this.state.value} onChange={this.handleChange} />
         </form>
         );
     }
