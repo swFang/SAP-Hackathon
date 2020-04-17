@@ -54,7 +54,7 @@ function AwaitingTask(props) {
           </p>
         </Modal.Body>
         <Modal.Footer>
-          <button class="btn float-left btn-primary" onClick={props.onHide}>Close</button>
+          <button class="btn float-left btn-secondary" onClick={props.onHide}>Close</button>
           <button class="btn float-right btn-primary" onClick={props.deletetask}>Accept Request</button>
           </Modal.Footer>
       </Modal>
