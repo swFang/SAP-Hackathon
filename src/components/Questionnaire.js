@@ -148,8 +148,8 @@ class Questionnaire extends React.Component {
             questionnaireGroup = (            
             <div>
                 <h3> How can we help you? </h3>
-                <QuestionnaireTextbox title="Title"/>
-                <QuestionnaireTextbox title="Title2"/>
+                <QuestionnaireTextbox title="Tell us more about what you need"/>
+                <QuestionnaireTextbox title="Please describe in Detail"/>
             </div>)
         }
         else if (displayId == 7) {
