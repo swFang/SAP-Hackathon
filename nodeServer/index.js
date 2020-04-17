@@ -42,9 +42,14 @@ app.get('/tag', async (req, res) => {
 
 app.post('/addPosting', async (req, res) => {
     const posting = req.body;
-    console.log('addposting', posting);
     const postingData = await addPostingData(posting);
     res.send(postingData);
+});
+
+app.post('/addTag', async (req, res) => {
+    const tag = req.body;
+    const tagData = await addTag(tag);
+    res.send(tagData);
 });
 
 app.post('/removePosting', async (req, res) => {
@@ -53,6 +58,13 @@ app.post('/removePosting', async (req, res) => {
     const postingData = await removePostingData(posting);
     res.send(postingData);
 });
+
+app.post('/removeTag', async (req, res) => {
+    const tag = req.body;
+    const postingTag = await removeTagData(tag);
+    res.send(postingTag);
+});
+
 
 
 
@@ -103,12 +115,38 @@ function addPostingData(posting) {
         })
 };
 
+function addTag(tag) {
+    const newTag = new tagModel(tag);
+    newTag.save()
+        .then(posting => {
+            console.log(posting)
+        })
+        .catch(err => {
+            console.error(err)
+        })
+};
+
 function removePostingData(posting) {
     const postingName = posting.name;
     console.log(posting.name);
     postingModel
         .findOneAndRemove({
             name: postingName
+        })
+        .then(response => {
+            console.log(response)
+        })
+        .catch(err => {
+            console.error(err)
+        })
+};
+
+function removeTagData(tag) {
+    const tagName = tag.name;
+    console.log(tagName);
+    tagModel
+        .findOneAndRemove({
+            name: tagName
         })
         .then(response => {
             console.log(response)
