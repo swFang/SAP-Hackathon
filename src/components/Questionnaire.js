@@ -1,5 +1,6 @@
 import React from 'react';
 import QuestionnaireButtonGroup from './QuestionnaireButtonGroup';
+import QuestionnaireEndGroup from './QuestionnaireEndGroup';
 import './Questionnaire.css';
 
 const Q1 = {
@@ -54,12 +55,50 @@ const Q5 = {
     ]
 };
 
+const END = {
+    title: "Great!",
+    subtitle: "Here's how you can help your community fight COVID-19!",
+    endText: "As always, please remember to socially distance!",
+    potentialSolutions: [
+        {
+            title: "Help produce protective equipment",
+            links: [
+                {body: "> How to produce masks with 3D printers", hyperlink: "https://engineering.rowan.edu/research-centers/mask/index.html"},
+                {body: "> How to sew masks", hyperlink: "https://sarahmaker.com/how-to-sew-a-surgical-face-mask-for-hospitals-free-pattern/"}
+            ],
+            imageLink: "./mask.svg"
+        },
+        {
+            title: "Help pick up groceries",
+            links: [
+                {body: "> Balancing nutrients during a lockdown", hyperlink: "http://www.emro.who.int/nutrition/nutrition-infocus/nutrition-advice-for-adults-during-the-covid-19-outbreak.html"}
+            ],
+            imageLink: "./basket.svg"
+        },
+        {
+            title: "Volunteer your time",
+            links: [
+                {body: "You're on your way to helping with COVID-19!", hyperlink: "#"}
+            ],
+            imageLink: "./hands.svg"
+        },
+        {
+            title: "Donate Supplies",
+            links: [
+                {body: "> Where to donate PPEs in your local area", hyperlink: "https://www.cbsnews.com/news/coronavirus-how-to-donate-personal-protective-equipment-ppe-health-care-workers/"}
+            ],
+            imageLink: "./box.svg"
+        },
+    ]
+}
+
 const QUESTIONNAIRE_MAP = {
     1: Q1,
     2: Q2,
     3: Q3,
     4: Q4,
-    5: Q5
+    5: Q5,
+    "end": END
 };
 
 class Questionnaire extends React.Component {
@@ -83,15 +122,25 @@ class Questionnaire extends React.Component {
 
     render() {
         const questionnaireObject = QUESTIONNAIRE_MAP[this.state.questionToDisplayId];
+        let questionnaireGroup;
+
+        if (this.state.questionToDisplayId !== "end") {
+            questionnaireGroup = <QuestionnaireButtonGroup
+                buttonObjects={questionnaireObject.buttonObjects}
+                isMultiSelect={questionnaireObject.multiSelect}
+                questionnaireGroupTitle={questionnaireObject.title}
+                updateQuestionnaireResponses={this.updateQuestionnaireResponses}
+            />;
+        }
+        else {
+            questionnaireGroup = <QuestionnaireEndGroup
+                endGroup={END}
+            />;
+        }
 
         return (
             <div className="container">
-                <QuestionnaireButtonGroup
-                    buttonObjects={questionnaireObject.buttonObjects}
-                    isMultiSelect={questionnaireObject.multiSelect}
-                    questionnaireGroupTitle={questionnaireObject.title}
-                    updateQuestionnaireResponses={this.updateQuestionnaireResponses}
-                />
+                {questionnaireGroup}
             </div>
         );
     }
