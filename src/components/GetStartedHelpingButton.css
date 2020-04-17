@@ -1,0 +1,25 @@
+:root {
+    --main-button-color: #7C7CFF;
+    --nBtn-top-spacing: 6%;
+}
+
+.getStartedButton {
+    background: var(--main-button-color);
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 9px 54px;
+    font-size: 18px;
+    height: 50px;
+    position: fixed;
+    top: 67%;
+    right: 44%;
+}
+
+.getStartedButton-default {
+    background: var(--main-button-color);
+}
+
+.getStartedButton-clicked {
+    background: rgb(97, 97, 199);
+}

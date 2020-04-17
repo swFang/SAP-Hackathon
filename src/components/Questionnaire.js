@@ -68,7 +68,7 @@ const Q6 = {
 
 const END = {
     title: "Great!",
-    subtitle: "Based on your responses, here's how you can help your community fight COVID-19!",
+    subtitle: "Based on your responses, we've gathered a list of postings and resources on how you can help your community fight COVID-19!",
     endText: "As always, please remember to socially distance!",
     potentialSolutions: [
         {
