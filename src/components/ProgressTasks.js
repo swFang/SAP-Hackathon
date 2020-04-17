@@ -24,6 +24,7 @@ function ProgressTasks(props) {
           complete={true}
           description={task.description}
           deleteTask={props.deleteTask}
+          priority={task.priority}
         />
       ))}
     </div>

@@ -23,7 +23,7 @@ function Googlemap(props) {
           key={task._id}
           lat={task.location.lat}
           lng={task.location.long}
-          name={task.title}
+          name={task.name}
         />
       ))}
       </GoogleMapReact>

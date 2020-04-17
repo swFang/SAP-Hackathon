@@ -18,6 +18,8 @@ function AwaitingTasks(props) {
           id={task.id}
           description={task.description}
           complete={task.complete}
+          priority={task.priority}
+          contact={task.contact}
         />
       ))}
     </div>
