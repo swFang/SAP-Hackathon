@@ -7,7 +7,7 @@ import axios from 'axios';
 
 function Dashboard() {
   const [data, setData] = useState({});
-  const awaitingTasks_ = [
+  const awaitingTasks_ = 
     // { 
     //   "title": "Dummy Title1",
     //   "date": "April 4th, 2020",
@@ -32,33 +32,78 @@ function Dashboard() {
     //   "name": "John",
     //   "complete": false
     // }
-    {
-      "stuff": {
-          "_id": "5e9941c34bc5b70063f592e0",
-          "priority": 10,
-          "name": "make_PPE",
-          "associatedPosts": [
-              null,
-              {
-                  "location": {
-                      "lat": 49.25,
-                      "long": -123.03
-                  },
-                  "_id": "5e99539ca51bc701ecac8fa0",
-                  "priority": 10,
-                  "name": "newPosting",
-                  "description": "description",
-                  "poster": "poster",
-                  "contact": "new",
-                  "date": "2020-04-17T06:39:25.000Z",
-                  "completion": true,
-                  "__v": 0
-              }
-          ],
-          "__v": 2
-      }
-  }
-  ]
+      {
+        "stuff": {
+            "_id": "5e9941c34bc5b70063f592e0",
+            "priority": 10,
+            "name": "make_PPE",
+            "associatedPosts": [
+                null,
+                {
+                    "location": {
+                        "lat": 1,
+                        "long": 2
+                    },
+                    "_id": "5e99539ca51bc701ecac8fa0",
+                    "priority": 10,
+                    "name": "newPosting",
+                    "description": "description",
+                    "poster": "poster",
+                    "contact": "new",
+                    "date": "2020-04-17T06:39:25.000Z",
+                    "completion": true,
+                    "__v": 0
+                },
+                {
+                    "location": {
+                        "lat": 1,
+                        "long": 1
+                    },
+                    "_id": "5e99e7499f498c076c388daf",
+                    "priority": 10,
+                    "name": "ASD",
+                    "description": "asd",
+                    "poster": "dummy name",
+                    "contact": "asdf",
+                    "date": "2020-04-17T17:09:08.000Z",
+                    "completion": false,
+                    "__v": 0
+                },
+                {
+                    "location": {
+                        "lat": 1,
+                        "long": 1
+                    },
+                    "_id": "5e99e7639f498c076c388db1",
+                    "priority": 10,
+                    "name": "ASD",
+                    "description": "asd",
+                    "poster": "dummy name",
+                    "contact": "asdf",
+                    "date": "2020-04-17T17:09:08.000Z",
+                    "completion": false,
+                    "__v": 0
+                },
+                {
+                    "location": {
+                        "lat": 1,
+                        "long": 1
+                    },
+                    "_id": "5e99e87aa753a907fc60320f",
+                    "priority": 10,
+                    "name": "Need Faceshields",
+                    "description": "Need faceshields to help protect doctors\n",
+                    "poster": "dummy name",
+                    "contact": "604-xxx-xxxx",
+                    "date": "2020-04-17T17:09:08.000Z",
+                    "completion": false,
+                    "__v": 0
+                }
+            ],
+            "__v": 5
+        }
+    }
+  
 
   const progressTasks_ = [
     {
@@ -92,10 +137,10 @@ function Dashboard() {
 
   function upDateJson(arr) {
     let result = [];
-    for (let i = 0; i < arr.length; i++) {
-      const obj = arr[i].stuff.associatedPosts[1]
-      // console.log("obj")
-      // console.log(obj)
+    for (let i = 1; i < 1; i++) {
+      const obj = arr.stuff.associatedPosts[i]
+      console.log("obj")
+      console.log(obj)
       result.push(obj)
     }
     // console.log("result[0]");
@@ -107,12 +152,12 @@ function Dashboard() {
   const progressTasks_updated = upDateJson(progressTasks_)
 
 
-  // useEffect(() => {
-  //   axios.get("localhost:8080/postsOfTags?tag=make_PPE")
-  //     .then(res => {
-  //       console.log(res)
-  //     })
-  // });
+  useEffect(() => {
+    axios.get("localhost:8080/postsOfTags?tag=make_PPE")
+      .then(res => {
+        console.log(res.stuff)
+      })
+  });
 
   // useEffect(async () => {
   //   axios.get('http://localhost:8080/postsOfTags?tag=make_PPE')
