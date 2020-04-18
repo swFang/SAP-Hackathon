@@ -69,11 +69,11 @@ class QuestionnaireFinalize extends React.Component {
             console.log('clickin Submit Posting, params are ', param);
             try{
                 const res = await axios.post("http://localhost:5000/addPosting", param);
+                this.props.submitPosting();
             } catch(e) {
                 console.log(e);
             }
         }, 1000);
-        this.props.submitPosting();
     }
 
     render() {

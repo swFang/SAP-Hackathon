@@ -240,10 +240,11 @@ function Dashboard() {
           <Googlemap data={awaitingTasks}/>
         </div>
         <div class="col-4">
-          <h1>Awaiting Requests</h1>
-          <AwaitingTasks data={awaitingTasks} updateTask={updateTask}/>
           <h1>In Progress</h1>
           <ProgressTasks data={progressTasks} deleteTask={deleteTask}/>
+          <hr/>
+          <h1>Awaiting Requests</h1>
+          <AwaitingTasks data={awaitingTasks} updateTask={updateTask}/>
         </div>
       </div>
     </div>
